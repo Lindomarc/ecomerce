@@ -1,10 +1,11 @@
 <?php
+	session_start();
 	
-	//ini_set('display_errors', 2);
+	ini_set('display_errors', 2);
 	
 	define('ROOT',__DIR__.DIRECTORY_SEPARATOR);
  	define('VIEWS',ROOT.'views'.DIRECTORY_SEPARATOR);
-	define('VIEWSCACHE',ROOT.'views-cache'.DIRECTORY_SEPARATOR);
+	define('VIEWSCACHE',ROOT.'tmp'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
 	
 	require_once("vendor/autoload.php");
 	
