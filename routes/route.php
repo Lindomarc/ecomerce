@@ -1,7 +1,7 @@
 <?php
-	 
-	use Slim\Slim; 	
+	
 	use Lin\PhpClass\Model\User;
+	use Slim\Slim;
 	
 	$app = new Slim;
 	
@@ -45,13 +45,37 @@
 		exit;
 	});
 	
-//	$app->get('/admin', function () {
-//		
-//		User::verifyLogin(false);
-//		
-//		$page = new Lin\PhpClass\Admin();
-//		$page->setTpl('index');
-//		
-//	});
+	/** USERS */
+	$app->get('/admin/users', function () {
+		User::verifyLogin();		
+		$page = new Lin\PhpClass\Admin();
+		$page->setTpl('users/index');
+		
+	});
+	$app->get('/admin/users/create', function () {
+		User::verifyLogin();
+		$page = new Lin\PhpClass\Admin();
+		$page->setTpl('users/create');
+	});
+	$app->post('/admin/users/create', function () {
+		User::verifyLogin();
+		$page = new Lin\PhpClass\Admin();
+		$page->setTpl('users/create');
+	});
+	
+	$app->get('/admin/users/:iduser', function ($iduser) {
+		User::verifyLogin();
+		$page = new Lin\PhpClass\Admin();
+		$page->setTpl('users/update');
+	});
+	
+	$app->post('/admin/users/:iduser', function ($iduser) {
+		User::verifyLogin();
+	});
+	
+	$app->delete('/admin/users/:iduser', function ($iduser) {
+		User::verifyLogin();
+	});
+
 	
 	$app->run();
