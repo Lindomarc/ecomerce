@@ -16,7 +16,7 @@
 	
 	$app->get('/admin', function () {
 		
-		//User::verifyLogin(true);
+		User::verifyLogin();
 		
 		$page = new Lin\PhpClass\Admin();
 		$page->setTpl('index');
@@ -38,10 +38,20 @@
 		header("Location: /admin");
 		exit;
 	});
+	
 	$app->get('/admin/logout', function () {
 		User::logout();
 		header("Location: /admin/login");
 		exit;
 	});
+	
+//	$app->get('/admin', function () {
+//		
+//		User::verifyLogin(false);
+//		
+//		$page = new Lin\PhpClass\Admin();
+//		$page->setTpl('index');
+//		
+//	});
 	
 	$app->run();
