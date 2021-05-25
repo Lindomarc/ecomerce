@@ -9,7 +9,7 @@
 	
 	$app->get('/', function () {
 		
-		$page = new Lin\PhpClass\Page();
+		$page = new Lin\PhpClass\Controller\Page();
 		$page->setTpl('index');
 		
 	});
@@ -18,7 +18,7 @@
 		
 		User::verifyLogin();
 		
-		$page = new Lin\PhpClass\Admin();
+		$page = new Lin\PhpClass\Controller\Admin();
 		$page->setTpl('index');
 		
 	});
@@ -28,7 +28,7 @@
 			"header"=>false,
 			"footer"=>false,
 		];
-		$page = new Lin\PhpClass\Login($options);
+		$page = new Lin\PhpClass\Controller\Login($options);
 		$page->setTpl('login');
 		
 	});
@@ -48,24 +48,24 @@
 	/** USERS */
 	$app->get('/admin/users', function () {
 		User::verifyLogin();		
-		$page = new Lin\PhpClass\Admin();
+		$page = new Lin\PhpClass\Controller\Admin();
 		$page->setTpl('users/index');
 		
 	});
 	$app->get('/admin/users/create', function () {
 		User::verifyLogin();
-		$page = new Lin\PhpClass\Admin();
+		$page = new Lin\PhpClass\Controller\Admin();
 		$page->setTpl('users/create');
 	});
 	$app->post('/admin/users/create', function () {
 		User::verifyLogin();
-		$page = new Lin\PhpClass\Admin();
+		$page = new Lin\PhpClass\Controller\Admin();
 		$page->setTpl('users/create');
 	});
 	
 	$app->get('/admin/users/:iduser', function ($iduser) {
 		User::verifyLogin();
-		$page = new Lin\PhpClass\Admin();
+		$page = new Lin\PhpClass\Controller\Admin();
 		$page->setTpl('users/update');
 	});
 	
