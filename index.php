@@ -8,19 +8,7 @@
 	
 	require_once("vendor/autoload.php");
 	
-	use Slim\Slim;
-	use Lin\PhpClass\Page;
+	require_once("routes/route.php");
 	
- 	$app = new Slim;
+
 	
-	$app->config('debug', true);
-	
-	$app->get('/', function () {
-		
-		$page = new Page();
-		$page->setTpl('index');
- 	    
-		
-	});
-	
-	$app->run();
