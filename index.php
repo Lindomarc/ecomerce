@@ -1,9 +1,10 @@
 <?php
-//ini_set('display_errors',2);
 	
-	use Slim\Slim;
+//	ini_set('display_errors', 2);
 	
 	require_once("vendor/autoload.php");
+	use Slim\Slim;
+	use PdoConnect\DB\Sql;
 	
 	$app = new Slim;
 	
@@ -11,7 +12,10 @@
 	
 	$app->get('/', function () {
 		
-		echo "OK";
+ 		$sql = new Sql();
+		$results = $sql->select("SELECT * FROM tb_users");
+		header('Content-Type: application/json');		
+		echo json_encode($results,true);
 		
 	});
 	
