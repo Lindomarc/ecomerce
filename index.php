@@ -1,21 +1,25 @@
 <?php
 	
-//	ini_set('display_errors', 2);
+	//ini_set('display_errors', 2);
+	
+	define('ROOT',__DIR__.DIRECTORY_SEPARATOR);
+ 	define('VIEWS',ROOT.'views'.DIRECTORY_SEPARATOR);
+	define('VIEWSCACHE',ROOT.'views-cache'.DIRECTORY_SEPARATOR);
 	
 	require_once("vendor/autoload.php");
-	use Slim\Slim;
-	use PdoConnect\DB\Sql;
 	
-	$app = new Slim;
+	use Slim\Slim;
+	use Lin\PhpClass\Page;
+	
+ 	$app = new Slim;
 	
 	$app->config('debug', true);
 	
 	$app->get('/', function () {
 		
- 		$sql = new Sql();
-		$results = $sql->select("SELECT * FROM tb_users");
-		header('Content-Type: application/json');		
-		echo json_encode($results,true);
+		$page = new Page();
+		$page->setTpl('index');
+ 	    
 		
 	});
 	
