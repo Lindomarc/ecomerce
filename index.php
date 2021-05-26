@@ -1,22 +1,18 @@
 <?php
+	if (!isset($_SESSION)) {
+		session_start();
+	}
 	
-//	ini_set('display_errors', 2);
+	ini_set('display_errors', 2);
+	
+	define('ROOT',__DIR__.DIRECTORY_SEPARATOR);
+ 	define('VIEWS',ROOT.'views'.DIRECTORY_SEPARATOR);
+ 	define('DEBUG', true);
+	define('VIEWSCACHE',ROOT.'tmp'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
 	
 	require_once("vendor/autoload.php");
-	use Slim\Slim;
-	use PdoConnect\DB\Sql;
 	
-	$app = new Slim;
+	require_once("routes/route.php");
 	
-	$app->config('debug', true);
+
 	
-	$app->get('/', function () {
-		
- 		$sql = new Sql();
-		$results = $sql->select("SELECT * FROM tb_users");
-		header('Content-Type: application/json');		
-		echo json_encode($results,true);
-		
-	});
-	
-	$app->run();
