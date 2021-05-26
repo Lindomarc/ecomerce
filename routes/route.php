@@ -1,81 +1,74 @@
 <?php
 	
-	use Lin\PhpClass\Model\User;
+	use Lin\PhpClass\Controller\AdminController;
 	use Slim\Slim;
 	
-	$app = new Slim;
+	$options = [
+		'mode' => 'development',
+		'debug' => true
+	];
+	
+	$app = new Slim($options);
 	
 	$app->config('debug', true);
 	
 	$app->get('/', function () {
 		
-		$page = new Lin\PhpClass\Controller\Page();
+		$page = new Lin\PhpClass\Controller\Controller();
 		$page->setTpl('index');
 		
 	});
 	
 	$app->get('/admin', function () {
 		
-		User::verifyLogin();
-		
-		$page = new Lin\PhpClass\Controller\Admin();
+		$page = new AdminController();
 		$page->setTpl('index');
 		
-	});
+	})->name('admin');
+	
 	
 	$app->get('/admin/login', function () {
-		$options = [
-			"header"=>false,
-			"footer"=>false,
-		];
-		$page = new Lin\PhpClass\Controller\Login($options);
-		$page->setTpl('login');
+		(new Lin\PhpClass\Controller\AuthController)->login();
+	});
+	
+	$app->post('/admin/pass', function (){
+		
+		try {
+			(new Lin\PhpClass\Controller\AuthController)->pass();
+		} catch (Exception $exception) {
+			var_dump($exception);
+		}
 		
 	});
 	
-	$app->post('/admin/login', function () {
- 		var_dump(User::login($_POST['deslogin'],$_POST['despassword']));
-		header("Location: /admin");
-		exit;
-	});
 	
 	$app->get('/admin/logout', function () {
-		User::logout();
-		header("Location: /admin/login");
-		exit;
+		(new Lin\PhpClass\Controller\AuthController)->logout();
 	});
 	
 	/** USERS */
 	$app->get('/admin/users', function () {
-		User::verifyLogin();		
-		$page = new Lin\PhpClass\Controller\Admin();
-		$page->setTpl('users/index');
-		
-	});
-	$app->get('/admin/users/create', function () {
-		User::verifyLogin();
-		$page = new Lin\PhpClass\Controller\Admin();
-		$page->setTpl('users/create');
-	});
-	$app->post('/admin/users/create', function () {
-		User::verifyLogin();
-		$page = new Lin\PhpClass\Controller\Admin();
-		$page->setTpl('users/create');
+		(new Lin\PhpClass\Controller\UserController)->index();
 	});
 	
-	$app->get('/admin/users/:iduser', function ($iduser) {
-		User::verifyLogin();
-		$page = new Lin\PhpClass\Controller\Admin();
+	$app->get('/admin/users/create', function () {
+		(new Lin\PhpClass\Controller\UserController)->create();
+	});
+	
+	$app->post("/admin/users/create", function () {
+		(new Lin\PhpClass\Controller\UserController)->store();
+	});
+	
+	$app->get('/admin/users/:id', function ($id) {
+		$page = new Lin\PhpClass\Controller\AdminController();
 		$page->setTpl('users/update');
 	});
 	
-	$app->post('/admin/users/:iduser', function ($iduser) {
-		User::verifyLogin();
+	$app->post('/admin/users/:id', function ($id) {
 	});
 	
-	$app->delete('/admin/users/:iduser', function ($iduser) {
-		User::verifyLogin();
+	$app->delete('/admin/users/:id', function ($id) {
 	});
-
+	
 	
 	$app->run();

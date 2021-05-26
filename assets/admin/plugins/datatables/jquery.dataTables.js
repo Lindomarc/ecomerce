@@ -14060,7 +14060,7 @@
 		/* Filtering */
 		"sFilterInput": "",
 	
-		/* Page length */
+		/* Controller length */
 		"sLengthSelect": "",
 	
 		/* Scrolling */
@@ -14586,7 +14586,7 @@
 	 */
 	
 	/**
-	 * Helpers for `columns.render`.
+	 * Helper for `columns.render`.
 	 *
 	 * The options defined here can be used with the `columns.render` initialisation
 	 * option to provide a display renderer. The following functions are defined:
@@ -14803,7 +14803,7 @@
 	 */
 
 	/**
-	 * Page change event, fired when the paging of the table is altered.
+	 * Controller change event, fired when the paging of the table is altered.
 	 *  @name DataTable#page.dt
 	 *  @event
 	 *  @param {event} e jQuery event object
@@ -14917,7 +14917,7 @@
 	 */
 
 	/**
-	 * Page length change event, fired when number of records to show on each
+	 * Controller length change event, fired when number of records to show on each
 	 * page (the length) is changed.
 	 *  @name DataTable#length.dt
 	 *  @event

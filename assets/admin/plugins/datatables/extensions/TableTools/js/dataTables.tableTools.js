@@ -517,7 +517,7 @@ TableTools = function( oDT, oOpts )
 			"saveLength": -1,
 
 			/** 
-			 * Page scrolling point before the printing display was shown so it can be restored
+			 * Controller scrolling point before the printing display was shown so it can be restored
 			 *  @property saveScroll
 			 *  @type	 int
 			 *  @default  -1

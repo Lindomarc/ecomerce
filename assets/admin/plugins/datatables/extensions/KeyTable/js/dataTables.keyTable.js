@@ -447,7 +447,7 @@ KeyTable = function ( oInit )
 			var iRow = _fnFindDtCell( nTarget )[1];
 			var bKeyCaptureCache = _bKeyCapture;
 
-			/* Page forwards */
+			/* Controller forwards */
 			while ( iRow >= oSettings.fnDisplayEnd() )
 			{
 				if ( oSettings._iDisplayLength >= 0 )
@@ -465,7 +465,7 @@ KeyTable = function ( oInit )
 				_oDatatable.oApi._fnCalculateEnd( oSettings );
 			}
 
-			/* Page backwards */
+			/* Controller backwards */
 			while ( iRow < oSettings._iDisplayStart )
 			{
 				oSettings._iDisplayStart = oSettings._iDisplayLength>=0 ?
