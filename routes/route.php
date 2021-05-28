@@ -1,16 +1,17 @@
 <?php
-	
+
 	use Lin\PhpClass\Controller\AdminController;
-	use Slim\Slim;
+	use Lin\PhpClass\Controller\UserController;
+ 
 	
 	$options = [
 		'mode' => 'development',
 		'debug' => true
 	];
 	
-	$app = new Slim($options);
+//	$app = new Slim($options);
 	
-	$app->config('debug', true);
+//	$app->config('debug', true);
 	
 	$app->get('/', function () {
 		
@@ -24,7 +25,7 @@
 		$page = new AdminController();
 		$page->setTpl('index');
 		
-	})->name('admin');
+	});
 	
 	
 	$app->get('/admin/login', function () {
@@ -47,28 +48,30 @@
 	});
 	
 	/** USERS */
+	
 	$app->get('/admin/users', function () {
-		(new Lin\PhpClass\Controller\UserController)->index();
+		(new UserController)->index();
 	});
 	
 	$app->get('/admin/users/create', function () {
-		(new Lin\PhpClass\Controller\UserController)->create();
+		(new UserController)->create();
 	});
 	
 	$app->post("/admin/users/create", function () {
-		(new Lin\PhpClass\Controller\UserController)->store();
+		(new UserController)->store();
 	});
 	
-	$app->get('/admin/users/:id', function ($id) {
-		$page = new Lin\PhpClass\Controller\AdminController();
-		$page->setTpl('users/update');
+	$app->get("/admin/users/:id", function ($id){
+ 		(new UserController)->edit($id);
 	});
 	
-	$app->post('/admin/users/:id', function ($id) {
+	
+	$app->post("/admin/users/:id", function ($id) {		
+		(new UserController)->update($id);
 	});
 	
 	$app->delete('/admin/users/:id', function ($id) {
+		(new UserController)->delete($id);
 	});
-	
-	
 	$app->run();
+	
