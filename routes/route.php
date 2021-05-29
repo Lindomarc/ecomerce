@@ -2,6 +2,7 @@
 
 	use Lin\PhpClass\Controller\AdminController;
 	use Lin\PhpClass\Controller\UserController;
+	use Lin\PhpClass\Controller\Page;
  
 	
 	$options = [
@@ -13,11 +14,8 @@
 	
 //	$app->config('debug', true);
 	
-	$app->get('/', function () {
-		
-		$page = new Lin\PhpClass\Controller\Controller();
-		$page->setTpl('index');
-		
+	$app->get('/', function () {		
+		(new Page([]))->index();		
 	});
 	
 	$app->get('/admin', function () {

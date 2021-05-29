@@ -4,20 +4,20 @@
 		session_start();
 	}
 	
-	define('ROOT',__DIR__.DIRECTORY_SEPARATOR);
-    define('VIEWS',ROOT.'views'.DIRECTORY_SEPARATOR);
-    define('DEBUG', true);
-	define('VIEWSCACHE',ROOT.'tmp'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
-	
-	ini_set('display_errors', 2);
-	
 	use Psr\Http\Message\ResponseInterface as Response;
 	use Psr\Http\Message\ServerRequestInterface as Request;
 	use Psr\Log\LoggerInterface;
 	use Slim\Factory\AppFactory;
 	
+	define('ROOT',dirname(__DIR__).DIRECTORY_SEPARATOR);
+
+    define('VIEWS',ROOT.'views'.DIRECTORY_SEPARATOR);
+    define('DEBUG', true);
+	define('VIEWS_CACHE',ROOT.'tmp'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
 	
-	require_once(__DIR__ . '/vendor/autoload.php');
+	ini_set('display_errors', 2);
+	
+	require_once(ROOT .'vendor'.DIRECTORY_SEPARATOR.'autoload.php');
 	
 	
 	/**
@@ -48,14 +48,14 @@
 	 */
 	$errorMiddleware = $app->addErrorMiddleware(true, true, true);
 	
-	require_once(__DIR__ .'/routes/route.php');
+	require_once(ROOT .'/routes/route.php');
 	
 	// Define app routes
-	$app->get('/hello/{name}', function (Request $request, Response $response, $args) {
-		$name = $args['name'];
-		$response->getBody()->write("Hello, $name");
-		return $response;
-	});
+//	$app->get('/hello/{name}', function (Request $request, Response $response, $args) {
+//		$name = $args['name'];
+//		$response->getBody()->write("Hello, $name");
+//		return $response;
+//	});
 	
 	// Run app
 	$app->run();
@@ -69,7 +69,7 @@
 	//	define('ROOT',__DIR__.DIRECTORY_SEPARATOR);
 	// 	define('VIEWS',ROOT.'views'.DIRECTORY_SEPARATOR);
 	// 	define('DEBUG', true);
-	//	define('VIEWSCACHE',ROOT.'tmp'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
+	//	define('VIEWS_CACHE',ROOT.'tmp'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
 	//	
 	//	require_once("vendor/autoload.php");
 	//	
