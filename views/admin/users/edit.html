@@ -3,6 +3,11 @@
 <!-- Content Header (Controller header) -->
 <section class="content-header">
   <h1>Users List</h1>
+	<ol class="breadcrumb">
+		<li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="/admin/users">User</a></li>
+		<li class="active">Here</li>
+	</ol>
 </section>
 
 <!-- Main content -->
@@ -16,15 +21,15 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-			<form role="form" action="/admin/users/{$user.id}" method="post">
+			<form role="form" action="/admin/users/{$user.iduser}" method="post">
 				<div class="box-body">
 					<div class="form-group">
 						<label for="desperson">Name</label>
 						<input type="text" class="form-control" id="desperson" name="desperson" placeholder="Enter the name" value="{$user.desperson}">
 					</div>
 					<div class="form-group">
-						<label for="username">Login</label>
-						<input type="text" class="form-control" id="username" name="username" placeholder="Enter the login" value="{$user.username}">
+						<label for="deslogin">Login</label>
+						<input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Enter the login" value="{$user.deslogin}">
 					</div>
 					<div class="form-group">
 						<label for="nrphone">Phone</label>
@@ -36,10 +41,11 @@
             </div>
             <div class="checkbox">
 				<label>
-					<input type="checkbox" name="inadmin" value="1" {if="$user.inadmin == 1" }checked{/if}> Administrator Access
+					<input type="checkbox" name="inadmin"  {if="$user.inadmin == 1"}checked{/if}> Administrator Access
 				</label>
-            </div>
-          </div>
+            </div>                                           
+				
+				</div>
           <!-- /.box-body -->
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">Save</button>
