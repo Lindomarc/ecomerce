@@ -14,11 +14,12 @@
     "phpmailer/phpmailer": "6.4.1",
     "slim/slim": "2.*",
     "rain/raintpl": "3.0.0",
-    "lindomar/notification": "1.0.0"
+    "lindomar/notification": "1.0.0",
+    "lindomar/php-class": "dev-main"
   },
   "autoload": {
     "psr-4": {
-      "Lin\\": "vendor\\lindomar\\php-classes\\src"
+      "Lin\\": "vendor\\lindomar\\php-class\\src"
     }
   }
 }
