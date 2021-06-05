@@ -7,7 +7,7 @@
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active"><a href="/admin/users">User</a></li>
+	<li class="active">Here</li>
   </ol>
 </section>
 
@@ -37,14 +37,20 @@
                 <tbody>
                   {loop="$users"}
                   <tr>
-                    <td>{$value.id}</td>
+                    <td>{$value.iduser}</td>
                     <td>{$value.desperson}</td>
                     <td>{$value.desemail}</td>
-                    <td>{$value.username}</td>
+                    <td>{$value.deslogin}</td>
                     <td>{if="$value.inadmin == 1"}Sim{else}Não{/if}</td>
                     <td>
-                      <a href="/admin/users/{$value.id}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                      <a href="/admin/users/{$value.id}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
+                      <a href="/admin/users/{$value.iduser}" class="btn btn-primary btn-xs">
+						  <i class="fa fa-edit"></i> Edit
+					  </a>
+                      <a href="/admin/users/{$value.iduser}/delete" 
+							  onclick="return confirm('Do you really want to delete this record?')" 
+							  class="btn btn-danger btn-xs">
+						  <i class="fa fa-trash"></i> Delete
+					  </a>
                     </td>
                   </tr>
                   {/loop}
