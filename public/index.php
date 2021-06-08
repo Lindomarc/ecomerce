@@ -157,4 +157,26 @@
 		
 	});
 	
+	$app->get('/admin/categories',function () {
+		(new \Lin\CategoryPage())->index();	
+	});
+	
+	$app->get('/admin/categories/create',function () {
+		(new \Lin\CategoryPage())->create();	
+	});
+	$app->post('/admin/categories/create',function () {
+		(new \Lin\CategoryPage())->create();	
+	});
+	
+	$app->get('/admin/categories/:id/delete',function ($id) {
+		(new \Lin\CategoryPage())->delete($id);	
+	});
+	
+	$app->get('/admin/categories/:id',function ($id) {
+		(new \Lin\CategoryPage())->edit($id);	
+	});
+	$app->post('/admin/categories/:id',function ($id) {
+		(new \Lin\CategoryPage())->edit($id);	
+	});
+	
 	$app->run();
