@@ -11,10 +11,15 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "phpmailer/phpmailer": "5.2.22",
-    "slim/slim": "2.0",
+    "phpmailer/phpmailer": "6.4.1",
+    "slim/slim": "2.*",
     "rain/raintpl": "3.0.0",
-    "lindomar/pdo-connect": "dev-main",
-    "ext-json": "*"
+    "lindomar/notification": "1.0.0",
+    "lindomar/php-class": "dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lin\\": "vendor\\lindomar\\php-class\\src"
+    }
   }
 }
