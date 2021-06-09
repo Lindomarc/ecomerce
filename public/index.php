@@ -182,11 +182,31 @@
 		(new \Lin\CategoryPage())->edit($id);	
 	});
 	
-	
 	$app->get('/category/:id',function ($id) {
 		
 		(new Page())->category($id);
 		
+	});
+	
+	$app->get('/admin/products',function () {
+		(new \Lin\ProductsPage())->index();
+	});
+	$app->get('/admin/products/create',function () {
+		(new \Lin\ProductsPage())->create();
+	});
+	$app->post('/admin/products/create',function () {
+		(new \Lin\ProductsPage())->create();
+	});
+	
+	$app->get('/admin/products/:id',function ($id) {
+		(new \Lin\ProductsPage())->edit($id);
+	});	
+	$app->post('/admin/products/:id',function ($id) {
+		(new \Lin\ProductsPage())->edit($id);
+	});
+	
+	$app->get('/admin/products/:id/delete',function ($id) {
+		(new \Lin\ProductsPage())->delete($id);
 	});
 	
 	$app->run();
