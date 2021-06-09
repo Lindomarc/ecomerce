@@ -1,9 +1,11 @@
 <?php
+	session_start();
 	
 	use Lin\AdminPage;
 	use Lin\Model\User;
 	use Lin\Page;
 	use Lin\UsersPage;
+	use Lin\AuthPage;
 	use Slim\Slim;
 	
 	ini_set('display_errors', 2);
@@ -70,7 +72,8 @@
 	
 	
 	$app->get('/auth/login', function () {
-		$page = new AdminPage([
+		
+		$page = new AuthPage([
 			"header" => false,
 			"footer" => false
 		]);
@@ -91,7 +94,7 @@
 	});
 	
 	$app->get('/auth/forgot', function () {
-		$page = new AdminPage([
+		$page = new AuthPage([
 			"header" => false,
 			"footer" => false
 		]);
@@ -109,7 +112,7 @@
 	});
 	
 	$app->get('/auth/forgot/send', function () {		
-		$page = new AdminPage([
+		$page = new AuthPage([
 			"header" => false,
 			"footer" => false
 		]);
@@ -123,7 +126,7 @@
 			$app->flash('error', 'Not Unable to retrieve password');
 		}
 		
-		$page = new AdminPage([
+		$page = new AuthPage([
 			"header" => false,
 			"footer" => false
 		]);
@@ -148,7 +151,7 @@
 		
 		$user->setPassword($_POST['password']);
 		
-		$page = new AdminPage([
+		$page = new AuthPage([
 			"header" => false,
 			"footer" => false
 		]);
@@ -177,6 +180,13 @@
 	});
 	$app->post('/admin/categories/:id',function ($id) {
 		(new \Lin\CategoryPage())->edit($id);	
+	});
+	
+	
+	$app->get('/category/:id',function ($id) {
+		
+		(new Page())->category($id);
+		
 	});
 	
 	$app->run();
