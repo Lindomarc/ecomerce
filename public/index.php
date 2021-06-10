@@ -188,11 +188,20 @@
 		(new \Lin\CategoryPage())->edit($id);	
 	});
 	
-	$app->get('/category/:id',function ($id) {
-		
-		(new Page())->category($id);
-		
+	$app->get('/admin/categories/:id/products',function ($id) {
+		(new \Lin\CategoryPage())->categoriesProducts($id);
+	});	
+	$app->get('/admin/categories/:idcategory/products/:idproduct/add',function ($idcategory,$idproduct) {
+		(new \Lin\CategoryPage())->addProduct($idcategory,$idproduct);
 	});
+	$app->get('/admin/categories/:idcategory/products/:idproduct/remove',function ($idcategory,$idproduct) {
+		(new \Lin\CategoryPage())->removeProduct($idcategory,$idproduct);
+	});
+	
+	$app->get('/category/:id',function ($id) {
+		(new Page())->category($id);		
+	});
+	
 	
 	$app->get('/admin/products',function () {
 		(new \Lin\ProductsPage())->index();
