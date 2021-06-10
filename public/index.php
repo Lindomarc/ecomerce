@@ -27,6 +27,8 @@
 	
 	require_once VENDOR . 'autoload.php';
 	
+	require_once ROOT.'helpers'.DIRECTORY_SEPARATOR.'tools.php';
+	
 	$app = new Slim();
 	$app->config(array(
 		'log.enable' => true,
@@ -34,8 +36,12 @@
 	));
 	
 	$app->get('/', function () {
-		$page = new Page();
-		$page->setTpl('index');
+		(new Page())->index();
+		
+	});
+		
+	$app->get('/products', function () {
+		(new Page())->index();
 	});
 	
 	
