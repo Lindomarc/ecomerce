@@ -23,6 +23,12 @@
 	const FROM_EMAIL = 'exemple2@exemple.com';
 	const FROM_NAME = 'exemple2';
 	
+	
+	const HOSTNAME = "db";
+	const USERNAME = "root";
+	const PASSWORD = "";
+	const DBNAME = "db_ecommerce";
+	
 	define('HTTP_HOST', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']);
 	
 	require_once VENDOR . 'autoload.php';
@@ -42,6 +48,10 @@
 		
 	$app->get('/products', function () {
 		(new Page())->index();
+	});
+	
+	$app->get('/products/:desurl',function ($desurl) {
+		(new Page())->products($desurl);
 	});
 	
 	
